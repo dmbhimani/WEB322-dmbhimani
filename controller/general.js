@@ -75,5 +75,38 @@ router.get("/login",(req,res) => {
     res.render("signIn");
 });
 
+router.post("/login", (req, res) => {
+    console.log(req.body);
+
+    const { email, password } = req.body;
+
+    let passedValidation = true;
+    let validationMessages = {};
+
+    
+    if (typeof email !== 'string' || email.trim().length == 0) {
+        // email is not a string, or, email is an empty string.
+        passedValidation = false;
+        validationMessages.email = "You must enter a email";
+    }
+
+    else if (typeof password !== 'string' || password.trim().length == 0) {
+        // password is not a string, or, password is an empty string.
+        passedValidation = false;
+        validationMessages.password = "You must enter a password";
+    }
+
+
+    if(passedValidation){
+        res.send("Success");
+    }   
+
+    else{
+        res.render("signIn",{
+            values: req.body,
+            validationMessages
+        });
+    }
+});
 
 module.exports = router;

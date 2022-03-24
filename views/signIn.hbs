@@ -2,12 +2,18 @@
 <form method="post" action="/login">
   <h1 style="text-align: center;">Sign In</h1>
   <div class="form-floating" style="width: 50%; margin:auto;">
-    <input type="text" class="form-control" id="floatingInput" placeholder="Email">
-    <label for="floatingInput">Email</label>
+    <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{values.email}}"/>
+    <label for="email">Email</label>
+    {{#if validationMessages.email}}
+        <span style="color: red;">{{validationMessages.email}}</span>
+    {{/if}}
   </div>
   <div class="form-floating" style="width: 50%; margin:auto;">
-    <input type="text" class="form-control" id="floatingInput" placeholder="Password">
-    <label for="floatingInput">Password</label>
+    <input type="text" class="form-control" id="password" name="password" placeholder="Password" value="{{values.password}}"/>
+    <label for="password">Password</label>
+    {{#if validationMessages.password}}
+        <span style="color: red;">{{validationMessages.password}}</span>
+    {{/if}}
   </div>
   <div class="d-grid" style="width: 50%; margin:auto;">
     <button class="btn btn-primary" type="submit">Sign In</button>
