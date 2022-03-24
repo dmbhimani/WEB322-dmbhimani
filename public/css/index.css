@@ -1,98 +1,29 @@
-body{
-    background-color : white;
+body
+{
+  background-color : white;
 }
 
-video {
+video 
+{
   max-width: 100%;
   height: auto;
   padding: 10px;
 }
 
-.box{background-color: white;
-    width: 700px;
-    border: 5px solid burlywood;
-    padding: 10px;
-    margin-left: auto;
-    margin-right:auto;
+.box
+{
+  background-color: white;
+  width: 700px;
+  border: 5px solid burlywood;
+  padding: 10px;
+  margin: auto;
 }
 
-.item1 { grid-area: Header; }
-.item2 { grid-area: First; }
-.item3 { grid-area: Second; }
-.item4 { grid-area: Third; }
-.item5 { grid-area: Grocery; }
-.item6 { grid-area: Recipe; }
-.item7 { grid-area: Kit; }
-
-.grid-container {
-    display: grid;
-    grid-template-areas:
-      'Header Header Header'
-      'First Second Third'
-      'Grocery Recipe Kit';
-    grid-gap: 10px;
-    padding: 10px;
-  }
-
-  .grid-container > div {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-  }
-
-  .menu1 { grid-area: Heading; }
-  .menu2 { grid-area: Image1; }
-  .menu3 { grid-area: Image2; }
-  .menu4 { grid-area: Image3; }
-  .menu5 { grid-area: Desc1; }
-  .menu6 { grid-area: Price1; }
-  .menu7 { grid-area: Desc2; }
-  .menu8 { grid-area: Price2; }
-  .menu9 { grid-area: Desc3; }
-  .menu10 { grid-area: Price3; }
-
-  .menu {
-    display: grid;
-    grid-template-areas:
-      'Heading Heading Heading Heading Heading Heading Heading Heading Heading'
-      'Image1 Image1 Image1 Image2 Image2 Image2 Image3 Image3 Image3 '
-      'Desc1 Desc1 Price1 Desc2 Desc2 Price2 Desc3 Desc3 Price3';
-    grid-gap: 10px;
-    padding: 10px;
-  }
-
-  .menu > div {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-  }
-
-  .footer1 { grid-area: Navigate; }
-  .footer2 { grid-area: Follow; }
-
-  .footer {
-    display: grid;
-    grid-template-areas:
-      'Navigate Navigate Follow';
-    grid-gap: 10px;
-    padding: 10px;
-  }
-
-  .footer > div {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-  }
-
-  * {box-sizing: border-box}
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
-}
+* {box-sizing: border-box}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password] 
+{
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -101,40 +32,9 @@ input[type=text], input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus 
+{
   background-color: #ddd;
   outline: none;
 }
 
-/* Overwrite default styles of hr */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* Set a style for the submit/register button */
-.registerbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-.registerbtn:hover {
-  opacity:1;
-}
-
-/* Add a blue text color to links */
-a {
-  color: dodgerblue;
-}
-
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-  background-color: #f1f1f1;
-  text-align: center;
-}

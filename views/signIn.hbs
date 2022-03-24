@@ -1,19 +1,17 @@
-<form>
-  <div class="container">
-    <h1>Sign In</h1>
-    <hr>
-
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-    <hr>
-
-    <button type="submit" class="registerbtn">Sign In</button>
+<br>
+<form method="post" action="/login">
+  <h1 style="text-align: center;">Sign In</h1>
+  <div class="form-floating" style="width: 50%; margin:auto;">
+    <input type="text" class="form-control" id="floatingInput" placeholder="Email">
+    <label for="floatingInput">Email</label>
   </div>
-
-  <div class="container signin">
-    <p>Don't have an account? <a href="/registration">Register</a>.</p>
+  <div class="form-floating" style="width: 50%; margin:auto;">
+    <input type="text" class="form-control" id="floatingInput" placeholder="Password">
+    <label for="floatingInput">Password</label>
   </div>
+  <div class="d-grid" style="width: 50%; margin:auto;">
+    <button class="btn btn-primary" type="submit">Sign In</button>
+  </div>
+  <br>
+  <p class="lead" style="text-align: center;">Already have an account? <a href="/registration">Register</a>.</p>
 </form>

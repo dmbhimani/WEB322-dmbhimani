@@ -20,36 +20,24 @@ const app = express();
 app.engine('.hbs', exphbs.engine({ extname: '.hbs', defaultLayout: "main" }));
 app.set('view engine', '.hbs');
 
+// Body Parser setup
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static("public"));
+
 // Add your routes here
 // e.g. app.get() { ... }
 
+const generalController = require("./controller/general");
+app.use("/", generalController);
 
-//res.sendFile(path.join(__dirname, "/views/index.html"));
 app.get("/", function(req,res) {
 res.render("home", {
     mealKits : topMealList.getTopMeals()
 });
 });
 
-app.get("/headers", (req,res) => {
-    const headers = req.headers;
-    res.json(headers);
-});
 
-app.get("/menu", (req,res) => {
-    res.render("onTheMenu");
-});
-
-
-app.get("/registration",(req,res) => {
-    res.render("registration");
-});
-
-app.get("/login",(req,res) => {
-    res.render("signIn");
-});
 // *** DO NOT MODIFY THE LINES BELOW ***
 
 // This use() will not allow requests to go beyond it

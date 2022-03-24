@@ -1,24 +1,38 @@
-<form>
-  <div class="container">
-    <h1>Register</h1>
-    <p>Please fill in this form to create an account.</p>
-  
-    <label for="fname"><b>First Name</b></label>
-    <input type="text" placeholder="First Name" name="fname" id="fname" required>
-    
-    <label for="lname"><b>Last Name</b></label>
-    <input type="text" placeholder="Last Name" name="lname" id="lname" required>
-
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
- 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-
-    <button type="submit" class="registerbtn">Register</button>
+<br>
+<form method="post" action="/registration">
+  <h1 style="text-align: center;">Register</h1>
+  <p style="text-align: center;">Please fill in this form to create an account.</p>
+  <div class="form-floating" style="width: 50%; margin:auto;">
+    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" value="{{values.firstName}}"/>
+    <label for="firstName">First Name</label>
+   {{#if validationMessages.firstName}}
+        <span style="color: red;">{{validationMessages.firstName}}</span>
+    {{/if}}
   </div>
-
-  <div class="container signin">
-    <p>Already have an account? <a href="/login">Sign in</a>.</p>
+  <div class="form-floating" style="width: 50%; margin:auto;">
+    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" value="{{values.lastName}}"/>
+    <label for="lastName">Last Name</label>
+    {{#if validationMessages.lastName}}
+        <span style="color: red;">{{validationMessages.lastName}}</span>
+    {{/if}}
   </div>
+  <div class="form-floating" style="width: 50%; margin:auto;">
+    <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{values.email}}"/>
+    <label for="email">Email</label>
+    {{#if validationMessages.email}}
+        <span style="color: red;">{{validationMessages.email}}</span>
+    {{/if}}
+  </div>
+  <div class="form-floating" style="width: 50%; margin:auto;">
+    <input type="text" class="form-control" id="password" name="password" placeholder="Password" value="{{values.password}}"/>
+    <label for="password">Password</label>
+    {{#if validationMessages.password}}
+        <span style="color: red;">{{validationMessages.password}}</span>
+    {{/if}}
+  </div>
+  <div class="d-grid" style="width: 50%; margin:auto;">
+    <button class="btn btn-primary" type="submit">Register</button>
+  </div>
+  <br>
+  <p class="lead" style="text-align: center;">Already have an account? <a href="/login">Sign in</a>.</p>
 </form>
