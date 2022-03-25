@@ -9,5 +9,5 @@ Course/Section: WEB 322 NDD
 
 Project URLs 
 
-GitHub Repository: https://github.com/WEB322-dmbhimani/ 
+GitHub Repository: https://github.com/dmbhimani/WEB322-dmbhimani/
 Heroku URL: https://web322-dmbhimani.herokuapp.com/ 
