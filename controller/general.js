@@ -1,24 +1,26 @@
 const express = require('express')
 const router = express.Router();
+const topMealList = require("../models/mealkit-db");
 
-router.get("/headers", (req,res) => {
-    const headers = req.headers;
-    res.json(headers);
+router.get("/", function(req,res) {
+    res.render("general/home", {
+        mealKits : topMealList.getTopMeals()
+    });
 });
 
 router.get("/menu", (req,res) => {
-    res.render("onTheMenu");
+    res.render("general/onTheMenu");
 });
 
 router.get("/registration",(req,res) => {
-    res.render("registration");
+    res.render("general/registration");
 });
 
 router.post("/registration", (req, res) => {
     console.log(req.body);
 
     const { firstName, lastName, email, password } = req.body;
-
+    
     let passedValidation = true;
     let validationMessages = {};
 
@@ -28,7 +30,7 @@ router.post("/registration", (req, res) => {
         validationMessages.firstName = "You must enter a first name";
     }
 
-    else if (typeof firstName !== 'string' || firstName.trim().length < 2) {
+    else if (firstName.trim().length < 2) {
         // First name is not a string, or, name is less than two characters.
         passedValidation = false;
         validationMessages.firstName = "First name is too short";
@@ -40,7 +42,7 @@ router.post("/registration", (req, res) => {
         validationMessages.lastName = "You must enter a last name";
     }
 
-    else if (typeof lastName !== 'string' || lastName.trim().length < 2) {
+    else if (lastName.trim().length < 2) {
         // Last name is not a string, or, name is less than two characters.
         passedValidation = false;
         validationMessages.lastName = "Last name is too short";
@@ -58,13 +60,52 @@ router.post("/registration", (req, res) => {
         validationMessages.password = "You must enter a password";
     }
 
+    else if (password.trim().length < 8 || password.trim().length > 12) {
+        // password is not a string, or, password is an empty string.
+        passedValidation = false;
+        validationMessages.password = "Password should be between 8 to 12 characters";
+    }
 
+
+    
     if(passedValidation){
-        res.send("Success");
+
+        const sgMail = require("@sendgrid/mail");
+        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
+        const msg = {
+            to: {email},
+            from: "dmbhimani@myseneca.ca",
+            subject: "Thanks for registering at Gourmet",
+            html:
+                `Full Name: ${firstName} ${lastName}<br>
+                Email Address: ${email}<br>
+                `
+        };
+
+        sgMail.send(msg)
+        .then(() => 
+        {
+            res.render("general/home", {
+                mealKits : topMealList.getTopMeals()
+            });
+        })
+            
+        .catch(err => 
+        {
+            console.log(`Error ${err}`);
+
+            res.render("general/contactUs", {
+                title: "Contact Us",
+                values: req.body,
+                validationMessages
+            });
+            
+        });
     }   
 
     else{
-        res.render("registration",{
+        res.render("general/registration",{
             values: req.body,
             validationMessages
         });
@@ -72,7 +113,7 @@ router.post("/registration", (req, res) => {
 });
 
 router.get("/login",(req,res) => {
-    res.render("signIn");
+    res.render("general/signIn");
 });
 
 router.post("/login", (req, res) => {
@@ -102,7 +143,7 @@ router.post("/login", (req, res) => {
     }   
 
     else{
-        res.render("signIn",{
+        res.render("general/signIn",{
             values: req.body,
             validationMessages
         });

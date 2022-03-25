@@ -14,7 +14,9 @@
 const path = require("path");
 const exphbs = require('express-handlebars');
 const express = require("express");
-const topMealList = require("./models/mealkit-db");
+
+const dotenv = require('dotenv');
+dotenv.config({ path: "./config/keys.env"});
 
 const app = express();
 app.engine('.hbs', exphbs.engine({ extname: '.hbs', defaultLayout: "main" }));
@@ -31,11 +33,7 @@ app.use(express.static("public"));
 const generalController = require("./controller/general");
 app.use("/", generalController);
 
-app.get("/", function(req,res) {
-res.render("home", {
-    mealKits : topMealList.getTopMeals()
-});
-});
+
 
 
 // *** DO NOT MODIFY THE LINES BELOW ***
