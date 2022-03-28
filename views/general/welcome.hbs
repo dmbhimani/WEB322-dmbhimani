@@ -1,0 +1,17 @@
+<br>
+<h2 style="text-align: center;">Hello!!! {{firstName}}    Welcome to Gourmet</h2><br><br>
+<h4 style="text-align: center;">Check out our latest meals</h4>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col" style="text-align: center;"><p style="font-size:xx-large;">On the Menu</p></div>
+    </div>
+    <br>
+    <div class="row">
+      {{#each mealKits}}
+        {{#if topMeal}}
+          {{>mealkit}}
+        {{/if}}
+      {{/each}}
+
+    </div>
+</div>

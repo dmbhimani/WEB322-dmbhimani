@@ -13,6 +13,8 @@
 
 const path = require("path");
 const exphbs = require('express-handlebars');
+const mongoose = require("mongoose");
+
 const express = require("express");
 
 const dotenv = require('dotenv');
@@ -24,6 +26,18 @@ app.set('view engine', '.hbs');
 
 // Body Parser setup
 app.use(express.urlencoded({ extended: false }));
+
+// Connect MongoDB
+mongoose.connect(process.env.MONGODB_CONN_STRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => {
+    console.log("Connected to the MongoDB database.");
+})
+.catch((err) => {
+    console.log(`There was a problem connecting to MongoDB ... ${err}`);
+});
 
 app.use(express.static("public"));
 

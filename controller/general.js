@@ -1,4 +1,5 @@
 const express = require('express')
+const userModel = require("../models/user");
 const router = express.Router();
 const topMealList = require("../models/mealkit-db");
 
@@ -65,10 +66,24 @@ router.post("/registration", (req, res) => {
         passedValidation = false;
         validationMessages.password = "Password should be between 8 to 12 characters";
     }
-
-
     
     if(passedValidation){
+
+        
+        const user = new userModel({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        });
+
+        user.save()
+        .then((userSaved) => {
+            console.log(`User ${userSaved.firstName} has been added to the database.`);
+        })
+        .catch((err) =>{ 
+            console.log(`Error adding user to the database ... ${err}`);
+        });
 
         const sgMail = require("@sendgrid/mail");
         sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
@@ -86,8 +101,8 @@ router.post("/registration", (req, res) => {
         sgMail.send(msg)
         .then(() => 
         {
-            res.render("general/home", {
-                mealKits : topMealList.getTopMeals()
+            res.render("general/welcome",{
+                mealKits : topMealList.getTopMeals(),
             });
         })
             
@@ -95,8 +110,7 @@ router.post("/registration", (req, res) => {
         {
             console.log(`Error ${err}`);
 
-            res.render("general/contactUs", {
-                title: "Contact Us",
+            res.render("general/registration", {
                 values: req.body,
                 validationMessages
             });
@@ -110,6 +124,7 @@ router.post("/registration", (req, res) => {
             validationMessages
         });
     }
+
 });
 
 router.get("/login",(req,res) => {
@@ -139,7 +154,9 @@ router.post("/login", (req, res) => {
 
 
     if(passedValidation){
-        res.send("Success");
+        res.render("general/welcome",{
+            mealKits : topMealList.getTopMeals(),
+        });
     }   
 
     else{
@@ -148,6 +165,12 @@ router.post("/login", (req, res) => {
             validationMessages
         });
     }
+});
+
+router.get("/welcome",(req,res) => {
+    res.render("general/welcome",{
+        mealKits : topMealList.getTopMeals(),
+    });
 });
 
 module.exports = router;
