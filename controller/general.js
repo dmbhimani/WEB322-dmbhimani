@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const express = require('express')
 const userModel = require("../models/user");
 const router = express.Router();
@@ -66,24 +67,25 @@ router.post("/registration", (req, res) => {
         passedValidation = false;
         validationMessages.password = "Password should be between 8 to 12 characters";
     }
-    
-    if(passedValidation){
 
-        
-        const user = new userModel({
+    const user = new userModel({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        });
+    });
 
-        user.save()
+    user.save()
         .then((userSaved) => {
             console.log(`User ${userSaved.firstName} has been added to the database.`);
         })
         .catch((err) =>{ 
             console.log(`Error adding user to the database ... ${err}`);
-        });
+    });
+    
+    if(passedValidation){
+
+        
 
         const sgMail = require("@sendgrid/mail");
         sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
@@ -132,12 +134,14 @@ router.get("/login",(req,res) => {
 });
 
 router.post("/login", (req, res) => {
+
     console.log(req.body);
 
     const { email, password } = req.body;
 
     let passedValidation = true;
     let validationMessages = {};
+    let errors = [];
 
     
     if (typeof email !== 'string' || email.trim().length == 0) {
@@ -152,10 +156,48 @@ router.post("/login", (req, res) => {
         validationMessages.password = "You must enter a password";
     }
 
+    
 
     if(passedValidation){
-        res.render("general/welcome",{
-            mealKits : topMealList.getTopMeals(),
+        userModel.findOne({
+            email: req.body.email
+        })
+    
+        .then(user => {
+            if(user){
+                bcrypt.compare(req.body.password, user.password)
+                .then(isMatched => {
+                    if(isMatched){
+                        res.render("general/welcome",{
+                            mealKits : topMealList.getTopMeals(),
+                        });
+                    }
+                    else {
+                        console.log("Passwords do not match.");
+                        errors.push("Sorry, your password does not match our database.");
+                        res.render("general/signIn", {
+                            errors
+                        });
+                    }
+                })
+            }
+            else {
+                console.log("User not found in the database.");
+                errors.push("Email was not found in the database.");
+                res.render("general/signIn", {
+                    errors
+                });
+            }
+        })
+    
+        .catch(err => {
+            // Couldn't query the database.
+            console.log(`Error finding the user in the database ... ${err}`);
+            errors.push("Oops, something went wrong.");
+    
+            res.render("general/signIn", {
+                errors
+            });
         });
     }   
 

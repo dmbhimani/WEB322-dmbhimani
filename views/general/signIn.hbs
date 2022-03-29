@@ -9,12 +9,15 @@
     {{/if}}
   </div>
   <div class="form-floating" style="width: 50%; margin:auto;">
-    <input type="text" class="form-control" id="password" name="password" placeholder="Password" value="{{values.password}}"/>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{values.password}}"/>
     <label for="password">Password</label>
     {{#if validationMessages.password}}
         <span style="color: red;">{{validationMessages.password}}</span>
     {{/if}}
   </div>
+  {{#each errors}}
+    <p style="color:red; text-align:center;">{{this}}</p>
+  {{/each}}
   <div class="d-grid" style="width: 50%; margin:auto;">
     <button class="btn btn-primary" type="submit">Sign In</button>
   </div>
