@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const express = require('express')
 const userModel = require("../models/user");
 const router = express.Router();
+const path = require("path");
 const topMealList = require("../models/mealkit-db");
 
 router.get("/", function(req,res) {
@@ -168,6 +169,9 @@ router.post("/login", (req, res) => {
                 bcrypt.compare(req.body.password, user.password)
                 .then(isMatched => {
                     if(isMatched){
+
+                        req.session.user = user;
+
                         res.render("general/welcome",{
                             mealKits : topMealList.getTopMeals(),
                         });
@@ -213,6 +217,13 @@ router.get("/welcome",(req,res) => {
     res.render("general/welcome",{
         mealKits : topMealList.getTopMeals(),
     });
+});
+
+router.get("/logout", (req, res) => {
+    // Clear the session from memory.
+    req.session.destroy();
+
+    res.render("general/signIn");
 });
 
 module.exports = router;
