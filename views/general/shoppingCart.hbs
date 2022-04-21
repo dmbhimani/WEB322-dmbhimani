@@ -1,3 +1,4 @@
+{{#each data}}
 <div class="card h-100">
    <img src="images/{{imageUrl}}" width="400px" height="400px" class="card-img-top">
    <div class="card-body">
@@ -10,10 +11,8 @@
           <div class="col-4" style="font-size:large;">
           ${{price}}
           </div>
-        </div><br>
-        <div class="row">
-          <button class="btn btn-primary" value="{{title}}" onclick="window.location.href='/mealkit/{{title}}'">Add to Cart</button>
         </div>
       </div>
     </div>
 </div>
+{{/each}}

@@ -3,11 +3,13 @@
    <div class="container-fluid">
        <a class="navbar-brand">
           <div class="box">&emsp;&emsp;
-               <img src="images/NavLogo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">&emsp;&emsp;
+               <img src="images/NavLogo.png" width="30" height="30" class="d-inline-block align-text-top">&emsp;&emsp;
                <a href = "/" style="font-size: larger; text-decoration: none; color: black;">Gourmet</a>&emsp;&emsp;&emsp;
                <a href = "/menu" style="font-family:Verdana, Geneva, Tahoma, sans-serif; text-decoration: none; color: black;">On The Menu</a>&emsp;&emsp;&emsp;
-               {{#if user}}
+               {{#if customer}}
                <a href = "/logout" style="font-family:Verdana, Geneva, Tahoma, sans-serif; text-decoration: none; color: black;">Logout</a>&emsp;&emsp;&emsp;
+               {{else if employee}}
+               <a href = "/logout" style="font-family:Verdana, Geneva, Tahoma, sans-serif; text-decoration: none; color: black;">Sign Out</a>&emsp;&emsp;&emsp;
                {{else}}
                <a href ="/registration" style="font-family: Verdana, Geneva, Tahoma, sans-serif; text-decoration: none; color: black;">Sign up</a>&emsp;&emsp;&emsp;
                <a href ="/login" style="font-family: Verdana, Geneva, Tahoma, sans-serif; text-decoration: none; color: black;">Log in</a>&emsp;&emsp;&emsp;

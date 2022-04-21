@@ -13,7 +13,7 @@ video
 .box
 {
   background-color: white;
-  width: 700px;
+  width: max-content;
   border: 5px solid burlywood;
   padding: 10px;
   margin: auto;

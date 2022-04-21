@@ -30,6 +30,9 @@
         <span style="color: red;">{{validationMessages.password}}</span>
     {{/if}}
   </div>
+  {{#each errors}}
+    <p style="color:red; text-align:center;">{{this}}</p>
+  {{/each}}
   <div class="d-grid" style="width: 50%; margin:auto;">
     <button class="btn btn-primary" type="submit">Register</button>
   </div>

@@ -7,11 +7,12 @@
     </div>
     <br>
     <div class="row">
-      {{#each mealKits}}
+      {{#each data}}
         {{#if topMeal}}
-          {{>mealkit}}
+          <div class="col-12 col-md-4">
+            {{>mealkit}}
+          </div>
         {{/if}}
       {{/each}}
-
     </div>
 </div>

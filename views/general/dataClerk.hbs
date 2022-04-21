@@ -1,0 +1,151 @@
+<br><h2 style="text-align: center;">Hi {{employee.firstName}}, this is list of mealKits</h2><br><br>
+{{#each data}}
+<div class="container"> 
+    <form method="post" action="/load-data/meal-kits/updateMeal">
+    <div class="row">
+        <p>Mealkit {{@index}}</p>
+    </div>
+    <div class="row">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="title" value="{{title}}" placeholder="Title"/>
+                    <label for="title">Title</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="includes" value="{{includes}}" placeholder="Includes"/>
+                    <label for="includes">Includes</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="description" value="{{description}}" placeholder="Description"/>
+                    <label for="description">Description</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="category" value="{{category}}" placeholder="Category"/>
+                    <label for="category">Category</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="price" value="{{price}}" placeholder="Price"/>
+                    <label for="price">Price</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="cookingTime" value="{{cookingTime}}" placeholder="Cooking Time"/>
+                    <label for="cookingTime">Cooking Time</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="servings" value="{{servings}}" placeholder="Servings"/>
+                    <label for="servings">Servings</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="caloriesPerServing" value="{{caloriesPerServing}}" placeholder="Calories Per Serving"/>
+                    <label for="caloriesPerServing">Calories Per Serving</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <div class="form">
+                    <label for="imageUrl">{{imageUrl}}</label>&emsp;&emsp;
+                    <input type="file" class="form" name="imageUrl" value="{{imageUrl}}" placeholder="Meal Picture"/>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="topMeal" value="{{topMeal}}" placeholder="Top Meal"/>
+                    <label class="form-check-label" for="topMeal">Top Meal: {{topMeal}}</label>
+                </div>
+            </div>
+            <div class="col-2"><button class="btn btn-primary" type="submit">Update Mealkit</button></div>
+        </div><br>
+    </form>
+</div>
+{{/each}}
+<br><h3 style="text-align: center;">Add MealKits Here</h3>
+<div class="container mt-5">
+    <form method="post" action="/load-data/meal-kits/addMeal" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="title" placeholder="Title"/>
+                    <label for="title">Title</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="includes" placeholder="Includes"/>
+                    <label for="includes">Includes</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="description" placeholder="Description"/>
+                    <label for="description">Description</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="category" placeholder="Category"/>
+                    <label for="category">Category</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="price" placeholder="Price"/>
+                    <label for="price">Price</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="cookingTime" placeholder="Cooking Time"/>
+                    <label for="cookingTime">Cooking Time</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="servings" placeholder="Servings"/>
+                    <label for="servings">Servings</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="caloriesPerServing" placeholder="Calories Per Serving"/>
+                    <label for="caloriesPerServing">Calories Per Serving</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form">
+                    <label for="imageUrl">Meal Picture</label>&emsp;&emsp;
+                    <input type="file" class="form" name="imageUrl" placeholder="Meal Picture"/>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="topMeal" value="true" placeholder="Top Meal"/>
+                    <label class="form-check-label" for="topMeal">Top Meal</label>
+                </div>
+            </div>
+        </div><br>
+        <div class="row" style="width: 50%; margin:auto;">
+            <button class="btn btn-primary" type="submit">Add MealKit</button>
+        </div>
+    </form>
+</div>

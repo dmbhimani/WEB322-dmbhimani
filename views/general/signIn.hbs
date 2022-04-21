@@ -18,9 +18,17 @@
   {{#each errors}}
     <p style="color:red; text-align:center;">{{this}}</p>
   {{/each}}
+  <div class="col" style="text-align: center;">
+    <input type="radio" class="btn-check" name="SignType" id="customer" value="customer">
+    <label class="btn btn-outline-dark btn-lg" for="customer">Customer sign in</label>
+    &emsp;&emsp;
+    <input type="radio" class="btn-check" name="SignType" id="employee" value="employee">
+    <label class="btn btn-outline-dark btn-lg" for="employee">Employee sign in</label>
+  </div>
   <div class="d-grid" style="width: 50%; margin:auto;">
+    <br>
     <button class="btn btn-primary" type="submit">Sign In</button>
   </div>
   <br>
-  <p class="lead" style="text-align: center;">Already have an account? <a href="/registration">Register</a>.</p>
+  <p class="lead" style="text-align: center;">Don't have an account? <a href="/registration">Register</a>.</p>
 </form>

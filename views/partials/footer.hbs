@@ -4,8 +4,10 @@
     <ul class="nav justify-content-center border-bottom ">
       <li class="nav-item"><a href="/" style="color: black;" class="nav-link px-2">Home</a></li>
       <li class="nav-item"><a href="/menu" style="color: black;" class="nav-link px-2">On the menu</a></li>
-      {{#if user}}
+      {{#if customer}}
       <li class="nav-item"><a href="/logout" style="color: black;" class="nav-link px-2">logout</a></li>
+      {{else if employee}}
+      <li class="nav-item"><a href="/logout" style="color: black;" class="nav-link px-2">Sign out</a></li>
       {{else}}
       <li class="nav-item"><a href="/registration" style="color: black;" class="nav-link px-2">Sign Up</a></li>
       <li class="nav-item"><a href="/login" style="color: black;" class="nav-link px-2">Log in</a></li>

@@ -1,5 +1,5 @@
 <br>
-<h2 style="text-align: center;">Hello {{user.firstName}}!!!    Welcome to Gourmet</h2><br><br>
+<h2 style="text-align: center;">Hello {{customer.firstName}}!!!    Welcome to Gourmet</h2><br><br>
 <h4 style="text-align: center;">Check out our latest meals</h4>
 <div class="container mt-5">
     <div class="row">
@@ -7,11 +7,12 @@
     </div>
     <br>
     <div class="row">
-      {{#each mealKits}}
+      {{#each data}}
         {{#if topMeal}}
-          {{>mealkit}}
+          <div class="col-12 col-md-4">
+            {{>mealkit}}
+          </div>
         {{/if}}
       {{/each}}
-
     </div>
 </div>
